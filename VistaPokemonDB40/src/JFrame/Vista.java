@@ -1519,6 +1519,20 @@ public final class Vista extends javax.swing.JFrame {
        return existe; 
     
     }
+    private int ComprobarEntrenadorInt(String n){
+       
+        boolean existe = false;
+        int cont = 0;
+        for(int i =0; i < this.arrayEntrenador.size();i++) { 
+           
+            if(n.equals(this.arrayEntrenador.get(i).getNombre())){
+                cont = i;
+            }
+        }
+        
+       return cont; 
+    
+    }
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         // TODO add your handling code here:
            int id =0; 
@@ -1557,9 +1571,12 @@ public final class Vista extends javax.swing.JFrame {
         }else{
           
            try{
-               
-                bdEntrenador.deleteEntrenador(arrayEntrenador.get(i));
+               int cont = 0;
                 arrayEntrenador.get(i).setNombre(textField9.getText());
+               cont = ComprobarEntrenadorInt( arrayEntrenador.get(i).getNombre());
+               
+                bdEntrenador.deleteEntrenador(arrayEntrenador.get(cont));
+               
                 arrayEntrenador.get(i).setEdad(Integer.parseInt(textField10.getText()));
                 arrayEntrenador.get(i).setCiudad(textField11.getText());
                 arrayEntrenador.get(i).setPokemon_Capturados(Integer.parseInt(textField12.getText()));
